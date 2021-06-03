@@ -29,4 +29,12 @@ class Flotilla
     recommended.uniq!
     recommended
   end
+
+  def personnel_by_ship
+    ship_hash = {}
+    @ships.each do |ship|
+      ship_hash[ship] = recommend_personnel(ship)
+    end
+    ship_hash
+  end
 end

@@ -13,6 +13,6 @@ describe Person do
   it 'attributes' do
     expect(@kathy.name).to eq('Kathy Chan')
     expect(@kathy.experience).to eq(10)
-    expect(@kathy.experience).to eq([])
+    expect(@kathy.specialties).to eq([])
   end
 end

@@ -17,6 +17,7 @@ describe Flotilla do
 
   it 'attributes' do
     expect(@seventh_flotilla.name).to eq('Seventh Flotilla')
+    expect(@seventh_flotilla.personnel).to eq([])
     expect(@seventh_flotilla.ships).to eq([])
   end
 end

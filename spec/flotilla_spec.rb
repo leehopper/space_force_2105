@@ -47,4 +47,14 @@ describe Flotilla do
 
     expect(@seventh_flotilla.personnel).to eq([@kathy, @polly, @rover, @sampson])
   end
+
+  it 'returns reccomnded personnel' do
+    @seventh_flotilla.add_ship(@daedalus)
+    @seventh_flotilla.add_personnel(@kathy)
+    @seventh_flotilla.add_personnel(@polly)
+    @seventh_flotilla.add_personnel(@rover)
+    @seventh_flotilla.add_personnel(@sampson)
+
+    expect(@seventh_flotilla.recommend_personnel(@daedalus)).to eq([])
+  end
 end

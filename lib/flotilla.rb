@@ -14,4 +14,19 @@ class Flotilla
   def add_personnel(person)
     @personnel << person
   end
+
+  def recommend_personnel(ship)
+    recommended = []
+    @personnel.each do |person|
+      ship.requirements.each do |req|
+        req.each do | key, value |
+          if person.specialties.include?(key) && person.experience >= value
+            recommended << person
+          end
+        end
+      end
+    end
+    recommended.uniq!
+    recommended
+  end
 end

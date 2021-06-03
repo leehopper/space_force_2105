@@ -21,6 +21,9 @@ describe Flotilla do
     @sampson = Person.new('Sampson Edwards', 7)
     @sampson.add_specialty(:astrophysics)
     @sampson.add_specialty(:quantum_mechanics)
+    @odyssey = Spacecraft.new({name: 'Odyssey', fuel: 300})
+    @odyssey.add_requirement({operations: 6})
+    @odyssey.add_requirement({maintenance: 3})
   end
 
   it 'exists' do
@@ -48,13 +51,23 @@ describe Flotilla do
     expect(@seventh_flotilla.personnel).to eq([@kathy, @polly, @rover, @sampson])
   end
 
-  it 'returns reccomnded personnel' do
+  it 'returns recommended personnel' do
     @seventh_flotilla.add_ship(@daedalus)
     @seventh_flotilla.add_personnel(@kathy)
     @seventh_flotilla.add_personnel(@polly)
     @seventh_flotilla.add_personnel(@rover)
     @seventh_flotilla.add_personnel(@sampson)
 
-    expect(@seventh_flotilla.recommend_personnel(@daedalus)).to eq([])
+    expect(@seventh_flotilla.recommend_personnel(@daedalus)).to eq([@kathy, @sampson])
+  end
+
+  it 'returns recommended personnel for new ship' do
+    @seventh_flotilla.add_ship(@daedalus)
+    @seventh_flotilla.add_personnel(@kathy)
+    @seventh_flotilla.add_personnel(@polly)
+    @seventh_flotilla.add_personnel(@rover)
+    @seventh_flotilla.add_personnel(@sampson)
+    
+    expect(@seventh_flotilla.recommend_personnel(@odyssey)).to eq([@polly])
   end
 end

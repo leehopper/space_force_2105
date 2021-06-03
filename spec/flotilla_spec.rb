@@ -20,4 +20,10 @@ describe Flotilla do
     expect(@seventh_flotilla.personnel).to eq([])
     expect(@seventh_flotilla.ships).to eq([])
   end
+
+  it 'adds ships' do
+    @seventh_flotilla.add_ship(@daedalus)
+
+    expect(@seventh_flotilla.ships).to eq([@daedalus])
+  end
 end

@@ -37,4 +37,13 @@ class Flotilla
     end
     ship_hash
   end
+
+  def ready_ships(fuel)
+    @ships.find_all do |ship|
+      crew_skills = (recommend_personnel(ship).flat_map { |person| person.specialties})
+      crew_skills.uniq!
+      ship_requires = ship.requirements.flat_map { |requirement| requirement.keys }
+      ship_requires == crew_skills && ship.fuel >= fuel
+    end
+  end
 end
